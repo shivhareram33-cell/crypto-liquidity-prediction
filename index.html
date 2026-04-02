@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Liquidity Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+            padding: 40px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            margin: 8px;
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .high {
+            color: green;
+        }
+        .low {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Crypto Liquidity Predictor</h1>
+
+    <form action="/submit" method="POST">
+        <input type="text" name="price" placeholder="Price" required><br>
+        <input type="text" name="1h" placeholder="1 Hour Change" required><br>
+        <input type="text" name="24h" placeholder="24 Hour Change" required><br>
+        <input type="text" name="7d" placeholder="7 Day Change" required><br>
+        <input type="text" name="24h_volume" placeholder="24h Volume" required><br>
+        <input type="text" name="mkt_cap" placeholder="Market Cap" required><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+        <div class="result">
+            {% if prediction == 1 %}
+                <p class="high">Liquidity is HIGH ✅ — You can BUY or SELL the coin.</p>
+            {% else %}
+                <p class="low">Liquidity is LOW ❌ — You should NOT BUY or SELL the coin.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</body>
+</html>
