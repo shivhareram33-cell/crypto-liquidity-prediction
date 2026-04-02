@@ -19,7 +19,7 @@ def submit():
     mkt_cap = float(request.form['mkt_cap'])
 
     input = np.array([[price , houre_1 , houre_24 , day_7 , volume_24h , mkt_cap]])
-    model = joblib.load('./notebook/final_model.pkl')
+    model = joblib.load('final_model.pkl')
     prediction = model.predict(input)
 
     return render_template('index.html', prediction=prediction[0])
